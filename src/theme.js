@@ -20,8 +20,8 @@ export const theme = extendTheme({
           lineHeight: { base: "" },
         },
         H2: {
-          fontSize: { base: "" },
-          lineHeight: "",
+          fontSize: { base: "20px" },
+          // lineHeight: "",
         },
         H3: {
           fontSize: "",
@@ -51,6 +51,10 @@ export const theme = extendTheme({
   fonts: {
     heading: "",
     body: "",
+  },
+
+  Input:{
+
   },
 
   breakpoints,
