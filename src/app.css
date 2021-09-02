@@ -1,0 +1,14 @@
+html {
+    height: 100%;
+  }
+
+body {
+margin: 0;
+height: 100%;
+background-color: hsl(185, 41%, 84%);
+display: flex;
+font-family: "Space Mono", monospace;
+color: hsl(186, 14%, 43%);
+font-weight: 700;
+font-size: 1.75vh;
+}
