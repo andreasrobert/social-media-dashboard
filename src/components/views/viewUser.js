@@ -1,21 +1,21 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
 
-function User({ user }) {
+function ViewUser({ user, getPosts, getAlbums }) {
   const [hovered, setHovered] = useState(false);
 
-  
+  const handleHover = () => {
+    setHovered(!hovered);
+  };
 
-  const handleHover= ()=>{
-    setHovered(!hovered)
-  }
+  const handleClick = async () => {
+    getPosts(user.id, user.username);
+    getAlbums(user.id);
+  };
 
   return (
-      <Link to={`/user/${user.id}`}>
     <Flex
       cursor="pointer"
-      mx="10px"
       p="10px"
       w="300px"
       minH="80px"
@@ -25,12 +25,14 @@ function User({ user }) {
       my="10px"
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
+      onClick={() => handleClick()}
     >
-      <Heading size="H2" textDecoration={hovered?"underline":"none"}>{user.name}</Heading>
+      <Heading size="H2" textDecoration={hovered ? "underline" : "none"}>
+        {user.name}
+      </Heading>
       <Text>u/{user.username}</Text>
     </Flex>
-    </Link>
   );
 }
 
-export default User;
+export default ViewUser;
