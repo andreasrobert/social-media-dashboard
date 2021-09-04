@@ -1,5 +1,5 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function ViewAlbum({ album, user }) {
@@ -12,14 +12,13 @@ function ViewAlbum({ album, user }) {
   return (
     <Link to={`/user/${album.userId}/album/${album.id}`}>
       <Flex
-        cursor="pointer"
-        p="10px"
-        w="500px"
-        minH="80px"
         flexDir="column"
         border="2px solid black"
         borderRadius="8px"
+        cursor="pointer"
+        minH="80px"
         my="10px"
+        p="10px"
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
       >

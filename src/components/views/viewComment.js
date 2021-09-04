@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import EditComment from "../pages/editComment";
+import EditComment from "../editComment";
 
 function ViewComment({ comment, getPost }) {
   const [user, setUser] = useState();
@@ -22,11 +22,11 @@ function ViewComment({ comment, getPost }) {
   return (
     <Flex
       flexDir="column"
-      p="20px"
-      w="700px"
-      borderRadius="8px"
       border="2px solid black"
+      borderRadius="8px"
+      w="100%"
       my="10px"
+      p="20px"
     >
       <Flex justifyContent="space-between">
         <Text fontWeight="400">By u/{comment.email}</Text>

@@ -1,7 +1,7 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import ViewPhoto from "../views/viewPhoto";
+import ViewPhoto from "../components/views/viewPhoto";
 import { Link } from "react-router-dom";
 
 function AlbumPage() {
@@ -44,7 +44,7 @@ function AlbumPage() {
   return (
     <Flex flexDir="column" alignItems="center">
       <Heading my="10px">u/{user.username} Albums</Heading>
-      <Flex flexWrap="wrap" w="70%" justifyContent="center">
+      <Flex justifyContent="center" flexWrap="wrap" w="70%">
         {albums.map((album) => {
           if (album.id == id && !isAllowed) {
             setIsAllowed(true);
@@ -52,15 +52,15 @@ function AlbumPage() {
           return (
             <Link key={album.id} to={`/user/${user.id}/album/${album.id}`}>
               <Flex
-                bg={album.id == id ? "black" : "inherit"}
                 color={album.id == id ? "yellow" : "inherit"}
+                bg={album.id == id ? "black" : "inherit"}
                 _hover={{ bg: "black", color: "yellow" }}
-                h="30px"
                 border="2px solid black"
-                px="3px"
                 alignItems="center"
-                m="3px"
                 borderRadius="8px"
+                minH="80%"
+                px="3px"
+                m="3px"
               >
                 <Text>{album.title}</Text>
               </Flex>

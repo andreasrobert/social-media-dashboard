@@ -1,22 +1,15 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import ViewUser from "../views/viewUser";
-import ViewPost from "../views/viewPost";
-import ViewAlbum from "../views/viewAlbum";
+import ViewUser from "../components/views/viewUser";
+import ViewPost from "../components/views/viewPost";
+import ViewAlbum from "../components/views/viewAlbum";
 
-function View({ page }) {
-  const [users, setUsers] = useState([]);
+function View({ page, users }) {
   const [focus, setFocus] = useState("");
   const [posts, setPosts] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [content, setContent] = useState(true);
-
-
-  const getUsers = () => {
-    fetch("https://kumparan-json-server.herokuapp.com/users")
-      .then((response) => response.json())
-      .then((res) => setUsers(res));
-  };
+  const [mobile, setMobile] = useState(true);
 
   const getPosts = (userId, userData) => {
     fetch(`https://kumparan-json-server.herokuapp.com/users/${userId}/posts`)
@@ -31,93 +24,107 @@ function View({ page }) {
       .then((res) => setAlbums(res));
   };
 
-  useEffect(() => {
-    getUsers();
-  }, [page]);
+  useEffect(() => {}, []);
 
   return (
     <Flex
+      alignItems={{ base: "center", lg: "inherit" }}
+      flexDir={{ base: "column", lg: "row" }}
       d={page === "view" ? "flex" : "none"}
+      justifyContent="center"
       bg="rgb(224, 224, 0)"
       h="100%"
       w="100%"
-      justifyContent="center"
+      px="10px"
     >
       {/* Left Side */}
-      <Flex flexDir="column" alignItems="center">
+      <Flex
+        w={{ base: "90vw", lg: "300px" }}
+        alignItems="center"
+        flexDir="column"
+      >
         <Flex
-          p="10px"
-          w="300px"
-          minH="40px"
-          border="2px solid black"
-          borderRadius="8px"
-          my="10px"
           justifyContent="center"
           alignItems="center"
+          border="2px solid black"
+          borderRadius="8px"
+          minH="40px"
+          w="100%"
+          my="10px"
+          p="10px"
+          cursor={mobile ? "" : "pointer"}
+          onClick={() => setMobile(true)}
         >
           <Heading size="H2">Users</Heading>
         </Flex>
-        {users.map((user) => {
-          return (
-            <ViewUser
-              key={user.id}
-              user={user}
-              getPosts={getPosts}
-              getAlbums={getAlbums}
-            ></ViewUser>
-          );
-        })}
+        {mobile
+          ? users?.map((user) => {
+              return (
+                <ViewUser
+                  key={user.id}
+                  user={user}
+                  getPosts={getPosts}
+                  getAlbums={getAlbums}
+                  setMobile={setMobile}
+                ></ViewUser>
+              );
+            })
+          : ""}
       </Flex>
 
       {/* Right Side */}
-      <Flex flexDir="column" alignItems="center" ml="40px" w="500px">
+      <Flex
+        w={{ base: "90vw", lg: "500px" }}
+        ml={{ lg: "40px" }}
+        alignItems="center"
+        flexDir="column"
+      >
         <Flex
-          mx="10px"
-          w="100%"
-          minH="40px"
-          my="10px"
           justifyContent="space-around"
           alignItems="center"
+          minH="40px"
+          w="100%"
+          m="10px"
         >
           <Flex
-            p="10px"
-            justifyContent="center"
-            cursor="pointer"
-            border="2px solid black"
-            borderRadius="8px 0 0 8px"
-            w="50%"
             _hover={{
               bg: "black",
               color: "yellow",
               textDecoration: "underline",
             }}
-            bg={content ? "black" : "inherit"}
             color={content ? "yellow" : "inherit"}
+            bg={content ? "black" : "inherit"}
+            justifyContent="center"
+            borderRadius="8px 0 0 8px"
+            border="2px solid black"
+            cursor="pointer"
+            p="10px"
+            w="50%"
             onClick={() => setContent(true)}
           >
             <Heading size="H2">Posts</Heading>
           </Flex>
           <Flex
-            p="10px"
-            justifyContent="center"
-            cursor="pointer"
-            border="2px solid black"
-            borderLeft="0px"
-            borderRadius="0 8px 8px 0"
-            w="50%"
             _hover={{
               bg: "black",
               color: "yellow",
               textDecoration: "underline",
             }}
-            bg={content ? "inherit" : "black"}
             color={content ? "inherit" : "yellow"}
+            bg={content ? "inherit" : "black"}
+            justifyContent="center"
+            borderRadius="0 8px 8px 0"
+            border="2px solid black"
+            borderLeft="0px"
+            cursor="pointer"
+            p="10px"
+            w="50%"
             onClick={() => setContent(false)}
           >
             <Heading size="H2">Album</Heading>
           </Flex>
         </Flex>
-        <Flex flexDir="column" d={content ? "flex" : "none"}>
+        <Flex d={content ? "flex" : "none"} flexDir="column" w="100%">
           {posts.map((post) => {
             if (post) {
               return (
@@ -128,11 +135,15 @@ function View({ page }) {
           })}
         </Flex>
 
-        <Flex flexDir="column" d={content ? "none" : "flex"}>
+        <Flex d={content ? "none" : "flex"} flexDir="column" w="100%">
           {albums.map((album) => {
             if (album) {
               return (
-                <ViewAlbum key={album.id} album={album} user={focus}></ViewAlbum>
+                <ViewAlbum
+                  key={album.id}
+                  album={album}
+                  user={focus}
+                ></ViewAlbum>
               );
             }
             return <></>;

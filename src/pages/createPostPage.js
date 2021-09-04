@@ -1,11 +1,11 @@
-import { Flex, Heading} from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import ButtonComponent from "./minor/button";
-import InputComponent from "./minor/input";
-import TextAreaComponent from "./minor/textArea";
+import ButtonComponent from "../components/minor/button";
+import InputComponent from "../components/minor/input";
+import TextAreaComponent from "../components/minor/textArea";
 
-export default function CreateComment({ postId, getComments }) {
-  const [name, setName] = useState("");
+function Create({ page }) {
+  const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
@@ -13,54 +13,52 @@ export default function CreateComment({ postId, getComments }) {
   const handleSubmit = (event) => {
     setLoading(true);
     event.preventDefault();
-    fetch("https://kumparan-json-server.herokuapp.com/comments", {
+    fetch("https://kumparan-json-server.herokuapp.com/posts", {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        name: name,
+        title: title,
         body: body,
-        postId: postId,
-        email: user.username,
+        userId: user.id,
       }),
     })
       .then((response) => response.json())
-      .then((result) => getComments(postId))
-      .then(() => setLoading(false));
+      .then((result) => setLoading(false));
   };
 
   useEffect(() => {
     if (document.cookie) {
       setUser(
         JSON.parse(
-          document?.cookie
-            ?.split(";")
+          document.cookie
+            .split(";")
             .find((row) => row.startsWith("user="))
             .split("=")[1]
         )
       );
     }
-  }, [loading]);
+  }, [page]);
 
   return (
     <Flex
-      flexDir="column"
+      d={page === "create" ? "flex" : "none"}
       alignItems="center"
+      flexDir="column"
       bg="rgb(224, 224, 0)"
       margin="auto"
-      minH="50vh"
-      mb="30px"
+      h="50vh"
     >
-      <Heading>Create comment</Heading>
+      <Heading>Create post</Heading>
       <Heading size="H2" mt="5px">
         {user ? `as u/${user?.username}` : "Please login!"}
       </Heading>
       <form onSubmit={handleSubmit}>
-        <Flex w={{ base: "90vw", lg: "500px" }} flexDir="column">
+        <Flex flexDir="column" w={{ base: "90vw", lg: "500px" }}>
           <InputComponent
-            value={name}
-            setValue={setName}
+            value={title}
+            setValue={setTitle}
             name="Title"
             width={95}
           />
@@ -73,3 +71,5 @@ export default function CreateComment({ postId, getComments }) {
     </Flex>
   );
 }
+
+export default Create;

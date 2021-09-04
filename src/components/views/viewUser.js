@@ -1,7 +1,7 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function ViewUser({ user, getPosts, getAlbums }) {
+function ViewUser({ user, getPosts, getAlbums, setMobile }) {
   const [hovered, setHovered] = useState(false);
 
   const handleHover = () => {
@@ -11,18 +11,22 @@ function ViewUser({ user, getPosts, getAlbums }) {
   const handleClick = async () => {
     getPosts(user.id, user.username);
     getAlbums(user.id);
+    if(window.innerWidth <= 530){
+      setMobile(false)
+    }
+    
   };
 
   return (
     <Flex
-      cursor="pointer"
-      p="10px"
-      w="300px"
-      minH="80px"
       flexDir="column"
       border="2px solid black"
       borderRadius="8px"
+      cursor="pointer"
+      minH="80px"
+      w="100%"
       my="10px"
+      p="10px"
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
       onClick={() => handleClick()}

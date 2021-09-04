@@ -1,52 +1,52 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function ViewPhoto({ photo }) {
   const [focus, setFocus] = useState(false);
 
   return (
     <Flex
+      flexDir="column"
+      alignItems="center"
+      border="2px solid black"
+      borderRadius="8px"
+      bg="black"
+      minH="200px"
+      w="170px"
       p="10px"
       m="10px"
-      w="170px"
-      flexDir="column"
-      minH="200px"
-      bg="black"
-      alignItems="center"
-      borderRadius="8px"
-      border="2px solid black"
     >
       <Image
+        src={photo.thumbnailUrl}
         cursor="pointer"
-        onClick={() => setFocus(!focus)}
+        border="2px solid black"
+        borderRadius="8px"
         boxSize="150px"
         fit="fill"
-        borderRadius="8px"
-        border="2px solid black"
-        src={photo.thumbnailUrl}
+        onClick={() => setFocus(!focus)}
       ></Image>
-      <Text mt="4px" color="yellow" fontWeight="400">
+      <Text color="yellow" fontWeight="400" mt="4px">
         {photo.title}
       </Text>
       <Flex
-        onClick={() => setFocus(!focus)}
         d={focus ? "flex" : "none"}
+        bg="rgba(0, 0, 0, 0.50)"
         justifyContent="center"
         alignItems="center"
-        top="0px"
-        left="0px"
         pos="fixed"
+        left="0px"
+        top="0px"
         w="100%"
         h="100%"
-        bg="rgba(0, 0, 0, 0.50)"
+        onClick={() => setFocus(!focus)}
       >
         <a target="_blank" rel="noopener noreferrer" href={photo.url}>
           <Image
-            onClick={(e) => e.stopPropagation()}
+            src={photo.url}
             cursor="pointer"
             boxSize="600px"
             fit="fill"
-            src={photo.url}
+            onClick={(e) => e.stopPropagation()}
           ></Image>
         </a>
       </Flex>
