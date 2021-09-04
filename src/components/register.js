@@ -71,7 +71,7 @@ export default function RegisterPage({ users, setAction, action, getUsers }) {
           <Text
             alignSelf="flex-end"
             cursor="pointer"
-            mt="15px"
+            mt="-15px"
             onClick={() => setAction(true)}
           >
             Login?

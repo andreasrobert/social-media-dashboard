@@ -11,6 +11,10 @@ function Create({ page }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
+    if(!user){
+      event.preventDefault();
+      return
+    }
     setLoading(true);
     event.preventDefault();
     fetch("https://kumparan-json-server.herokuapp.com/posts", {
@@ -64,7 +68,7 @@ function Create({ page }) {
           />
 
           <TextAreaComponent value={body} setValue={setBody} name="Body" />
-
+          
           <ButtonComponent act="Submit" loading={loading} />
         </Flex>
       </form>

@@ -11,6 +11,10 @@ export default function CreateComment({ postId, getComments }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
+    if(!user){
+      event.preventDefault();
+      return
+    }
     setLoading(true);
     event.preventDefault();
     fetch("https://kumparan-json-server.herokuapp.com/comments", {

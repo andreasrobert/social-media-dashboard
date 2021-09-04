@@ -55,7 +55,7 @@ export default function LoginPage({ users, setAction }) {
           <Text
             alignSelf="flex-end"
             cursor="pointer"
-            mt="15px"
+            mt="-15px"
             onClick={() => setAction(false)}
           >
             Create an account?
