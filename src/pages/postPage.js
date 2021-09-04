@@ -77,7 +77,7 @@ function Post() {
           </Text>
         </Flex>
         <CreateComment postId={id} getComments={getComments}></CreateComment>
-        {comments.map((comment) => {
+        {comments.slice(0).reverse().map((comment) => {
           return (
             <ViewComment
               getPost={getPost}

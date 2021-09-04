@@ -1,6 +1,7 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ButtonComponent from "./minor/button";
+import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 
@@ -82,9 +83,11 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
             <TextAreaComponent value={newbody} setValue={setBody} name="Body" />
 
             <Flex justifyContent="flex-end">
-              <Flex mr="10px">
-                <ButtonComponent act="Delete" loading={loading} />
-              </Flex>
+              <DeleteButtonComponent
+                act="Delete"
+                loading={loading}
+                handleDelete={handleDelete}
+              />
 
               <ButtonComponent act="Update" loading={loading} />
             </Flex>
