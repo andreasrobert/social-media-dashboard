@@ -29,7 +29,7 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
       .then(() => setClick(false));
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = () => {
     console.log("hello");
     setLoading(true);
     fetch(`https://kumparan-json-server.herokuapp.com/posts/${postId}`, {

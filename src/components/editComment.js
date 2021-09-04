@@ -29,7 +29,7 @@ export default function EditComment({ getPost, setIsClicked, comment }) {
       .then(() => setIsClicked(false));
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = () => {
     console.log("hello");
     setLoading(true);
     fetch(`https://kumparan-json-server.herokuapp.com/comments/${comment.id}`, {
