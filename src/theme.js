@@ -2,9 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const breakpoints = createBreakpoints({
-  sm: "125vh",
-  lg: "168vh",
-  xl: "1440px",
+  sm: "10px",
+  md: "420px",
+  lg: "530px",
+  lm: "800px",
+  xl: "920px",
 });
 
 export const theme = extendTheme({
@@ -16,12 +18,12 @@ export const theme = extendTheme({
       },
       sizes: {
         H1: {
-          fontSize: { base: "" },
+          fontSize: {base:"4vw", lm: "40px" },
           lineHeight: { base: "" },
         },
         H2: {
           fontSize: { base: "20px" },
-          // lineHeight: "",
+          lineHeight: "25px",
         },
         H3: {
           fontSize: "",
@@ -37,12 +39,14 @@ export const theme = extendTheme({
       },
       sizes: {
         Body: {
-          fontSize: {
-            base: "",
-          },
-          lineHeight: {
-            base: "",
-          },
+          fontWeight: "400",
+          // lineHeight: {
+          //   base: "",
+          // },
+        },
+        P:{
+          fontSize:"16px",
+          fontWeight: "400",
         },
       },
     },
@@ -53,9 +57,7 @@ export const theme = extendTheme({
     body: "",
   },
 
-  Input:{
-
-  },
+  Input: {},
 
   breakpoints,
 });
