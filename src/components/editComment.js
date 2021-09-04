@@ -5,11 +5,10 @@ import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 
-export default function EditComment({ getPost, setClick, comment }) {
+export default function EditComment({ getPost, setIsClicked, comment }) {
   const [loading, setLoading] = useState(false);
-  const [newtitle, setTitle] = useState("");
-  const [newbody, setBody] = useState("");
-  const [first, setFirst] = useState(true);
+  const [newTitle, setTitle] = useState("");
+  const [newBody, setBody] = useState("");
 
   const handleEdit = (event) => {
     setLoading(true);
@@ -20,14 +19,14 @@ export default function EditComment({ getPost, setClick, comment }) {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        name: newtitle,
-        body: newbody,
+        name: newTitle,
+        body: newBody,
       }),
     })
       .then((response) => response.json())
       .then(() => getPost())
       .then(() => setLoading(false))
-      .then(() => setClick(false));
+      .then(() => setIsClicked(false));
   };
 
   const handleDelete = (event) => {
@@ -37,12 +36,11 @@ export default function EditComment({ getPost, setClick, comment }) {
       method: "DELETE",
     })
       .then(() => getPost())
-      .then(() => setClick(false));
+      .then(() => setIsClicked(false));
   };
 
   useEffect(() => {
-    if (first && comment) {
-      setFirst(false);
+    if (comment) {
       setTitle(comment.name);
       setBody(comment.body);
     }
@@ -58,7 +56,7 @@ export default function EditComment({ getPost, setClick, comment }) {
       left="0px"
       w="100%"
       h="100%"
-      onClick={() => setClick(false)}
+      onClick={() => setIsClicked(false)}
     >
       <Flex
         w={{ base: "90vw", xl: "900px" }}
@@ -76,21 +74,25 @@ export default function EditComment({ getPost, setClick, comment }) {
         <form onSubmit={handleEdit}>
           <Flex flexDir="column" w={{ base: "70vw", lm: "500px" }}>
             <InputComponent
-              value={newtitle}
+              value={newTitle}
               setValue={setTitle}
-              name="Title"
+              label="Title"
               width={95}
             />
 
-            <TextAreaComponent value={newbody} setValue={setBody} name="Body" />
+            <TextAreaComponent
+              value={newBody}
+              setValue={setBody}
+              label="Body"
+            />
             <Flex justifyContent="flex-end">
               <DeleteButtonComponent
-                act="Delete"
+                label="Delete"
                 loading={loading}
                 handleDelete={handleDelete}
               />
 
-              <ButtonComponent act="Update" loading={loading} />
+              <ButtonComponent label="Update" loading={loading} />
             </Flex>
           </Flex>
         </form>

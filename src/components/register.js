@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import InputComponent from "./minor/input";
 
-export default function RegisterPage({ users, setAction, action, getUsers }) {
+export default function RegisterPage({ users, setChangePage, changePage, getUsers }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ export default function RegisterPage({ users, setAction, action, getUsers }) {
 
   useEffect(() => {
     setCreated(false);
-  }, [action]);
+  }, [changePage]);
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function RegisterPage({ users, setAction, action, getUsers }) {
           <InputComponent
             value={name}
             setValue={setName}
-            name="name"
+            label="name"
             width={114}
           />
 
@@ -61,18 +61,18 @@ export default function RegisterPage({ users, setAction, action, getUsers }) {
             <InputComponent
               value={username}
               setValue={setUsername}
-              name="username"
+              label="username"
               width={185}
             />
           </Flex>
 
-          <ButtonComponent act="Submit" loading={loading} />
+          <ButtonComponent label="Submit" loading={loading} />
 
           <Text
             alignSelf="flex-end"
             cursor="pointer"
             mt="-15px"
-            onClick={() => setAction(true)}
+            onClick={() => setChangePage(true)}
           >
             Login?
           </Text>

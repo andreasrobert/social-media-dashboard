@@ -45,10 +45,10 @@ function App() {
               getUsers={getUsers}
             ></CreateUser>
           </Route>
-          <Route exact path="/post/:id">
+          <Route exact path="/post/:postId">
             <PostPage></PostPage>
           </Route>
-          <Route exact path="/user/:userId/album/:id">
+          <Route exact path="/user/:userId/album/:albumId">
             <AlbumPage></AlbumPage>
           </Route>
         </Switch>

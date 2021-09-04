@@ -7,13 +7,13 @@ import TextAreaComponent from "../components/minor/textArea";
 function Create({ page }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [user, setUser] = useState();
+  const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
-    if(!user){
+    if (!loggedUser) {
       event.preventDefault();
-      return
+      return;
     }
     setLoading(true);
     event.preventDefault();
@@ -25,7 +25,7 @@ function Create({ page }) {
       body: JSON.stringify({
         title: title,
         body: body,
-        userId: user.id,
+        userId: loggedUser.id,
       }),
     })
       .then((response) => response.json())
@@ -34,7 +34,7 @@ function Create({ page }) {
 
   useEffect(() => {
     if (document.cookie) {
-      setUser(
+      setLoggedUser(
         JSON.parse(
           document.cookie
             .split(";")
@@ -56,20 +56,20 @@ function Create({ page }) {
     >
       <Heading>Create post</Heading>
       <Heading size="H2" mt="5px">
-        {user ? `as u/${user?.username}` : "Please login!"}
+        {loggedUser ? `as u/${loggedUser?.username}` : "Please login!"}
       </Heading>
       <form onSubmit={handleSubmit}>
         <Flex flexDir="column" w={{ base: "90vw", lg: "500px" }}>
           <InputComponent
             value={title}
             setValue={setTitle}
-            name="Title"
+            label="Title"
             width={95}
           />
 
-          <TextAreaComponent value={body} setValue={setBody} name="Body" />
-          
-          <ButtonComponent act="Submit" loading={loading} />
+          <TextAreaComponent value={body} setValue={setBody} label="Body" />
+
+          <ButtonComponent label="Submit" loading={loading} />
         </Flex>
       </form>
     </Flex>

@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import InputComponent from "./minor/input";
 
-export default function LoginPage({ users, setAction }) {
+export default function LoginPage({ users, setChangePage }) {
   const [username, setUsername] = useState("");
   const [loaded, setLoaded] = useState(false);
-  const [user, setUser] = useState();
+  const [loggedUser, setLoggedUser] = useState();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ export default function LoginPage({ users, setAction }) {
 
   useEffect(() => {
     if (document.cookie) {
-      setUser(
+      setLoggedUser(
         JSON.parse(
           document.cookie
             .split(";")
@@ -37,26 +37,28 @@ export default function LoginPage({ users, setAction }) {
 
   return (
     <>
-      <Heading>{user ? `Hello ${user?.name}` : "Login user"}</Heading>
+      <Heading>
+        {loggedUser ? `Hello ${loggedUser?.name}` : "Login user"}
+      </Heading>
       <Heading size="H2" mt="5px">
-        {user ? `you're logged in as u/${user?.username}` : ""}
+        {loggedUser ? `you're logged in as u/${loggedUser?.username}` : ""}
       </Heading>
       <form onSubmit={handleLogin}>
         <Flex flexDir="column" w={{ base: "90vw", lg: "500px" }}>
           <InputComponent
             value={username}
             setValue={setUsername}
-            name="username"
+            label="username"
             width={185}
           />
 
-          <ButtonComponent act="Submit" loading={false} />
+          <ButtonComponent label="Submit" loading={false} />
 
           <Text
             alignSelf="flex-end"
             cursor="pointer"
             mt="-15px"
-            onClick={() => setAction(false)}
+            onClick={() => setChangePage(false)}
           >
             Create an account?
           </Text>

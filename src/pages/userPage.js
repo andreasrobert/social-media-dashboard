@@ -1,5 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ViewUser from "../components/views/viewUser";
 import ViewPost from "../components/views/viewPost";
 import ViewAlbum from "../components/views/viewAlbum";
@@ -23,8 +23,6 @@ function View({ page, users }) {
       .then((response) => response.json())
       .then((res) => setAlbums(res));
   };
-
-  useEffect(() => {}, []);
 
   return (
     <Flex

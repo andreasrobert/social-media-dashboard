@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-export default function ButtonComponent({act, loading}){
+export default function ButtonComponent({label, loading}){
     return(
         <Button
             _hover={{ bg: "black", color: "rgb(224, 224, 0) !important" }}
@@ -21,7 +21,7 @@ export default function ButtonComponent({act, loading}){
             isDisabled={loading ? true : false}
             isLoading={loading ? true : false}
           >
-            {act}
+            {label}
           </Button>
     )
 }

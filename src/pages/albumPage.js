@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 function AlbumPage() {
   const [albums, setAlbums] = useState([]); // .albumId, .userId
-  const [user, setUser] = useState([]); //.userId
+  const [userData, setUserData] = useState([]); //.userId
   const [photos, setPhotos] = useState([]); // .albumId,
   const [isAllowed, setIsAllowed] = useState(false);
 
-  let { userId, id } = useParams();
+  let { userId, albumId } = useParams();
 
   const getAllUserAlbums = () => {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}/albums`)
@@ -21,11 +21,11 @@ function AlbumPage() {
   const getUser = () => {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
       .then((response) => response.json())
-      .then((res) => setUser(res));
+      .then((res) => setUserData(res));
   };
 
   const getPhotos = () => {
-    fetch(`https://jsonplaceholder.typicode.com/albums/${id}/photos`)
+    fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
       .then((response) => response.json())
       .then((res) => setPhotos(res));
   };
@@ -39,21 +39,21 @@ function AlbumPage() {
     if (isAllowed) {
       getPhotos();
     }
-  }, [userId, id, isAllowed]);
+  }, [userId, albumId, isAllowed]);
 
   return (
     <Flex flexDir="column" alignItems="center">
-      <Heading my="10px">u/{user.username} Albums</Heading>
+      <Heading my="10px">u/{userData.username} Albums</Heading>
       <Flex justifyContent="center" flexWrap="wrap" w="70%">
         {albums.map((album) => {
-          if (album.id == id && !isAllowed) {
+          if (album.id == albumId && !isAllowed) {
             setIsAllowed(true);
           }
           return (
-            <Link key={album.id} to={`/user/${user.id}/album/${album.id}`}>
+            <Link key={album.id} to={`/user/${userData.id}/album/${album.id}`}>
               <Flex
-                color={album.id == id ? "yellow" : "inherit"}
-                bg={album.id == id ? "black" : "inherit"}
+                color={album.id == albumId ? "yellow" : "inherit"}
+                bg={album.id == albumId ? "black" : "inherit"}
                 _hover={{ bg: "black", color: "yellow" }}
                 border="2px solid black"
                 alignItems="center"

@@ -7,9 +7,8 @@ import TextAreaComponent from "./minor/textArea";
 
 export default function EditPost({ postId, title, body, setClick, getPost }) {
   const [loading, setLoading] = useState(false);
-  const [newtitle, setTitle] = useState("");
-  const [newbody, setBody] = useState("");
-  const [first, setFirst] = useState(true);
+  const [newTitle, setTitle] = useState("");
+  const [newBody, setBody] = useState("");
 
   const handleEdit = (event) => {
     setLoading(true);
@@ -20,8 +19,8 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        title: newtitle,
-        body: newbody,
+        title: newTitle,
+        body: newBody,
       }),
     })
       .then((response) => response.json())
@@ -39,8 +38,7 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
   };
 
   useEffect(() => {
-    if (first && title && body) {
-      setFirst(false);
+    if (title && body) {
       setTitle(title);
       setBody(body);
     }
@@ -74,22 +72,26 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
         <form onSubmit={handleEdit}>
           <Flex flexDir="column" w={{ base: "70vw", lm: "500px" }}>
             <InputComponent
-              value={newtitle}
+              value={newTitle}
               setValue={setTitle}
-              name="Title"
+              label="Title"
               width={95}
             />
 
-            <TextAreaComponent value={newbody} setValue={setBody} name="Body" />
+            <TextAreaComponent
+              value={newBody}
+              setValue={setBody}
+              label="Body"
+            />
 
             <Flex justifyContent="flex-end">
               <DeleteButtonComponent
-                act="Delete"
+                label="Delete"
                 loading={loading}
                 handleDelete={handleDelete}
               />
 
-              <ButtonComponent act="Update" loading={loading} />
+              <ButtonComponent label="Update" loading={loading} />
             </Flex>
           </Flex>
         </form>

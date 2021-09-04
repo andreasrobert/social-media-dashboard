@@ -1,4 +1,4 @@
-import { Flex, Heading} from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import InputComponent from "./minor/input";
@@ -7,13 +7,13 @@ import TextAreaComponent from "./minor/textArea";
 export default function CreateComment({ postId, getComments }) {
   const [name, setName] = useState("");
   const [body, setBody] = useState("");
-  const [user, setUser] = useState();
+  const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
-    if(!user){
+    if (!loggedUser) {
       event.preventDefault();
-      return
+      return;
     }
     setLoading(true);
     event.preventDefault();
@@ -26,17 +26,17 @@ export default function CreateComment({ postId, getComments }) {
         name: name,
         body: body,
         postId: postId,
-        email: user.username,
+        email: loggedUser.username,
       }),
     })
       .then((response) => response.json())
-      .then((result) => getComments(postId))
+      .then(() => getComments(postId))
       .then(() => setLoading(false));
   };
 
   useEffect(() => {
     if (document.cookie) {
-      setUser(
+      setLoggedUser(
         JSON.parse(
           document?.cookie
             ?.split(";")
@@ -58,20 +58,20 @@ export default function CreateComment({ postId, getComments }) {
     >
       <Heading>Create comment</Heading>
       <Heading size="H2" mt="5px">
-        {user ? `as u/${user?.username}` : "Please login!"}
+        {loggedUser ? `as u/${loggedUser?.username}` : "Please login!"}
       </Heading>
       <form onSubmit={handleSubmit}>
         <Flex w={{ base: "90vw", lg: "500px" }} flexDir="column">
           <InputComponent
             value={name}
             setValue={setName}
-            name="Title"
+            label="Title"
             width={95}
           />
 
-          <TextAreaComponent value={body} setValue={setBody} name="Body" />
+          <TextAreaComponent value={body} setValue={setBody} label="Body" />
 
-          <ButtonComponent act="Submit" loading={loading} />
+          <ButtonComponent label="Submit" loading={loading} />
         </Flex>
       </form>
     </Flex>

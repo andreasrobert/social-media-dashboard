@@ -6,18 +6,18 @@ import CreateComment from "../components/createComment";
 import EditPost from "../components/editPost";
 
 function Post() {
-  const [post, setPost] = useState([]);
-  const [user, setUser] = useState([]);
+  const [postData, setPostData] = useState([]);
+  const [userData, setUserData] = useState([]);
   const [comments, setComments] = useState([]);
-  const [you, setYou] = useState();
+  const [loggedUser, setLoggedUser] = useState();
   const [click, setClick] = useState(false);
 
-  let { id } = useParams();
+  let { postId } = useParams();
 
   const getUser = (userId) => {
     fetch(`https://kumparan-json-server.herokuapp.com/users/${userId}`)
       .then((response) => response.json())
-      .then((res) => setUser(res));
+      .then((res) => setUserData(res));
   };
 
   const getComments = (postId) => {
@@ -27,10 +27,10 @@ function Post() {
   };
 
   const getPost = () => {
-    fetch(`https://kumparan-json-server.herokuapp.com/posts/${id}`)
+    fetch(`https://kumparan-json-server.herokuapp.com/posts/${postId}`)
       .then((response) => response.json())
       .then((res) => {
-        setPost(res);
+        setPostData(res);
         getUser(res.userId);
         getComments(res.id);
       });
@@ -39,7 +39,7 @@ function Post() {
   useEffect(() => {
     getPost();
     if (document.cookie) {
-      setYou(
+      setLoggedUser(
         JSON.parse(
           document?.cookie
             ?.split(";")
@@ -48,7 +48,7 @@ function Post() {
         )
       );
     }
-  }, [id]);
+  }, [postId]);
 
   return (
     <Flex justifyContent="center">
@@ -62,8 +62,8 @@ function Post() {
           p="20px"
         >
           <Flex justifyContent="space-between">
-            <Text fontWeight="500">By u/{user.username}</Text>
-            {you?.username === user?.username && you ? (
+            <Text fontWeight="500">By u/{userData.username}</Text>
+            {loggedUser?.username === userData?.username && loggedUser ? (
               <Text onClick={() => setClick(true)} cursor="pointer">
                 edit
               </Text>
@@ -71,12 +71,12 @@ function Post() {
               ""
             )}
           </Flex>
-          <Heading size="H2">{post.title}</Heading>
+          <Heading size="H2">{postData.title}</Heading>
           <Text size="P" mt="16px">
-            {post.body}
+            {postData.body}
           </Text>
         </Flex>
-        <CreateComment postId={id} getComments={getComments}></CreateComment>
+        <CreateComment postId={postId} getComments={getComments}></CreateComment>
         {comments.slice(0).reverse().map((comment) => {
           return (
             <ViewComment
@@ -86,13 +86,13 @@ function Post() {
             ></ViewComment>
           );
         })}
-        {you?.username === user?.username && you && click ? (
+        {loggedUser?.username === userData?.username && loggedUser && click ? (
           <EditPost
             setClick={setClick}
             getPost={getPost}
-            postId={id}
-            title={post.title}
-            body={post.body}
+            postId={postId}
+            title={postData.title}
+            body={postData.body}
           ></EditPost>
         ) : (
           ""

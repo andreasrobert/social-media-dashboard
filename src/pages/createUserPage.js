@@ -4,7 +4,7 @@ import LoginPage from "../components/login";
 import RegisterPage from "../components/register";
 
 function Create({ page, users, getUsers }) {
-  const [action, setAction] = useState(true);
+  const [changePage, setChangePage] = useState(true);
 
   return (
     <Flex
@@ -15,13 +15,13 @@ function Create({ page, users, getUsers }) {
       margin="auto"
       h="50vh"
     >
-      {action ? (
-        <LoginPage users={users} setAction={setAction}></LoginPage>
+      {changePage ? (
+        <LoginPage users={users} setChangePage={setChangePage}></LoginPage>
       ) : (
         <RegisterPage
           users={users}
-          action={action}
-          setAction={setAction}
+          changePage={changePage}
+          setChangePage={setChangePage}
           getUsers={getUsers}
         ></RegisterPage>
       )}

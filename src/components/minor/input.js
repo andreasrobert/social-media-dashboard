@@ -1,6 +1,6 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
 
-export default function InputComponent({value, setValue, name, width}){
+export default function InputComponent({value, setValue, label, width}){
     return(
         <Flex
               alignItems={{ xl: "center" }}
@@ -17,7 +17,7 @@ export default function InputComponent({value, setValue, name, width}){
                 w={width}
                 
               >
-                {name} :
+                {label} :
               </Heading>
               <Input
                 placeholder=". . ."

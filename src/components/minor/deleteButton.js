@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-export default function DeleteButtonComponent({ act, loading, handleDelete }) {
+export default function DeleteButtonComponent({ label, loading, handleDelete }) {
   return (
     <Button
       _hover={{ bg: "black", color: "rgb(224, 224, 0) !important" }}
@@ -22,7 +22,7 @@ export default function DeleteButtonComponent({ act, loading, handleDelete }) {
       isDisabled={loading ? true : false}
       isLoading={loading ? true : false}
     >
-      {act}
+      {label}
     </Button>
   );
 }

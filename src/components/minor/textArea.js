@@ -1,6 +1,6 @@
 import { Flex, Heading, Textarea } from "@chakra-ui/react";
 
-export default function TextAreaComponent({value, setValue, name}){
+export default function TextAreaComponent({value, setValue, label}){
     return(
         <Flex alignItems={{ xl: "center" }} flexDir="column" pos="relative">
               <Heading
@@ -10,7 +10,7 @@ export default function TextAreaComponent({value, setValue, name}){
                 w="107px"
                 my="10px"
               >
-                {name} :
+                {label} :
               </Heading>
               <Textarea
                 placeholder="Say something . . ."

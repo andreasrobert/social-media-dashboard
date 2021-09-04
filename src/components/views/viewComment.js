@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import EditComment from "../editComment";
 
 function ViewComment({ comment, getPost }) {
-  const [user, setUser] = useState();
-  const [click, setClick] = useState(false);
+  const [loggedUser, setLoggedUser] = useState();
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     if (document.cookie) {
-      setUser(
+      setLoggedUser(
         JSON.parse(
           document?.cookie
             ?.split(";")
@@ -30,8 +30,8 @@ function ViewComment({ comment, getPost }) {
     >
       <Flex justifyContent="space-between">
         <Text fontWeight="400">By u/{comment.email}</Text>
-        {user?.username === comment.email && user ? (
-          <Text onClick={() => setClick(true)} cursor="pointer">
+        {loggedUser?.username === comment.email && loggedUser ? (
+          <Text onClick={() => setIsClicked(true)} cursor="pointer">
             edit
           </Text>
         ) : (
@@ -42,9 +42,9 @@ function ViewComment({ comment, getPost }) {
       <Text size="P" mt="4px">
         {comment.body}
       </Text>
-      {user?.username === comment.email && user && click ? (
+      {loggedUser?.username === comment.email && loggedUser && isClicked ? (
         <EditComment
-          setClick={setClick}
+          setIsClicked={setIsClicked}
           getPost={getPost}
           comment={comment}
         ></EditComment>
