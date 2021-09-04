@@ -1,4 +1,4 @@
-import { Flex, Heading, Spinner } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ViewUser from "../views/viewUser";
 import ViewPost from "../views/viewPost";
@@ -11,11 +11,6 @@ function View({ page }) {
   const [albums, setAlbums] = useState([]);
   const [content, setContent] = useState(true);
 
-  // const getUsers = () => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((response) => response.json())
-  //     .then((res) => setUsers(res));
-  // };
 
   const getUsers = () => {
     fetch("https://kumparan-json-server.herokuapp.com/users")
@@ -129,6 +124,7 @@ function View({ page }) {
                 <ViewPost key={post.id} post={post} user={focus}></ViewPost>
               );
             }
+            return <></>;
           })}
         </Flex>
 
@@ -139,6 +135,7 @@ function View({ page }) {
                 <ViewAlbum key={album.id} album={album} user={focus}></ViewAlbum>
               );
             }
+            return <></>;
           })}
         </Flex>
       </Flex>

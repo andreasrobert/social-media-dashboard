@@ -29,8 +29,9 @@ export default function CreateComment({postId, getComments}) {
   };
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-  }, [loading]);
+    if(document.cookie){
+      setUser(JSON.parse(document?.cookie?.split(';').find(row => row.startsWith("user=")).split("=")[1]))
+    }  }, [loading]);
 
   return (
     <Flex
@@ -41,6 +42,9 @@ export default function CreateComment({postId, getComments}) {
       flexDir="column"
     >
       <Heading>Create comment</Heading>
+      <Heading mt="5px" size="H2">
+        {user ? `as u/${user?.username}` : "Please login!"}
+      </Heading>
       <form onSubmit={handleSubmit}>
         <Flex flexDir="column">
           <Flex my="30px" alignItems="center" pos="relative">

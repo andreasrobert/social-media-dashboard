@@ -14,7 +14,7 @@ function ViewPost({ post, user }) {
       <Flex
         cursor="pointer"
         p="10px"
-        w="500px"
+        maxW="500px"
         minH="80px"
         flexDir="column"
         border="2px solid black"

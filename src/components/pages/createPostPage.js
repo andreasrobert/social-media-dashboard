@@ -26,7 +26,10 @@ function Create({ page }) {
   };
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
+    if(document.cookie){
+      setUser(JSON.parse(document.cookie.split(';').find(row => row.startsWith("user=")).split("=")[1]))
+    }
+    
   }, [page]);
 
   return (
@@ -40,7 +43,7 @@ function Create({ page }) {
       flexDir="column"
     >
       <Heading>Create post</Heading>
-      <Heading mt="10px" size="H2">
+      <Heading mt="5px" size="H2">
         {user ? `as u/${user?.username}` : "Please login!"}
       </Heading>
       <form onSubmit={handleSubmit}>
@@ -109,3 +112,4 @@ function Create({ page }) {
 }
 
 export default Create;
+

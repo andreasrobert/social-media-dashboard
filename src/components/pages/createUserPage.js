@@ -1,4 +1,4 @@
-import { Flex, Heading, Input, Textarea, Button } from "@chakra-ui/react";
+import { Flex, Heading, Input, Textarea, Button, Checkbox } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 function Create({ page }) {
@@ -21,12 +21,21 @@ function Create({ page }) {
       }),
     })
       .then((response) => response.json())
-      .then((res) => localStorage.setItem("user",JSON.stringify(res)))
+      .then((res) => document.cookie = `user=${JSON.stringify(res)};max-age=1900;path=/`)
       .then(() => setLoading(false));
   };
 
+  console.log()
+
+  const check = () =>{
+    
+  }
+
   useEffect(()=>{
-    setUser(JSON.parse(localStorage.getItem('user')))
+    if(document.cookie){
+      setUser(JSON.parse(document.cookie.split(';').find(row => row.startsWith("user=")).split("=")[1]))
+    }
+    check()
 
   },[page, loading])
 
@@ -41,7 +50,7 @@ function Create({ page }) {
       flexDir="column"
     >
       <Heading>{user?`Hello ${user?.name}`:"Create user"}</Heading>
-      <Heading mt="10px" size="H2">{user?`you're logged in as u/${user?.username}`:""}</Heading>
+      <Heading mt="5px" size="H2">{user?`you're logged in as u/${user?.username}`:""}</Heading>
       <form onSubmit={handleSubmit}>
         <Flex flexDir="column">
           <Flex my="30px" alignItems="center" pos="relative">
