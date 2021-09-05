@@ -1,44 +1,24 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
-// import useHandleEdit from "../hooks/useHandleEdit";
+import useHandlePost from "../hooks/useHandleUpdate";
 
 export default function EditPost({ postId, title, body, setClick, getPost }) {
-  const [loading, setLoading] = useState(false);
-  const [newTitle, setTitle] = useState("");
-  const [newBody, setBody] = useState("");
+  
+  const url = `https://kumparan-json-server.herokuapp.com/posts/${postId}`;
 
-  const handleEdit = (event) => {
-    setLoading(true);
-    event.preventDefault();
-    fetch(`https://kumparan-json-server.herokuapp.com/posts/${postId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        title: newTitle,
-        body: newBody,
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => getPost())
-      .then(() => setLoading(false))
-      .then(() => setClick(false));
-  };
-
-  // useHandleEdit(postId, newTitle, newBody, getPost, setLoading, setClick)
-
-  const handleDelete = () => {
-    console.log("hello");
-    setLoading(true);
-    fetch(`https://kumparan-json-server.herokuapp.com/posts/${postId}`, {
-      method: "DELETE",
-    }).then(() => (window.location = "/"));
-  };
+  const {
+    handleEdit,
+    handleDeletePost,
+    loading,
+    newTitle,
+    setTitle,
+    newBody,
+    setBody,
+  } = useHandlePost(url, getPost, setClick, "title");
 
   useEffect(() => {
     if (title && body) {
@@ -92,7 +72,7 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
               <DeleteButtonComponent
                 label="Delete"
                 loading={loading}
-                handleDelete={handleDelete}
+                handleDelete={handleDeletePost}
               />
 
               <ButtonComponent label="Update" loading={loading} />

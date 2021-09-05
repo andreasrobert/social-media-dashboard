@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import ViewComment from "../components/views/viewComment";
 import CreateComment from "../components/createComment";
 import EditPost from "../components/editPost";
+import useVerifyUser from "../hooks/useVerifyUser";
 
 function Post() {
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [comments, setComments] = useState([]);
-  const [loggedUser, setLoggedUser] = useState();
   const [click, setClick] = useState(false);
 
   let { postId } = useParams();
@@ -36,18 +36,12 @@ function Post() {
       });
   };
 
+  const { loggedUser } = useVerifyUser(postId)
+
+
   useEffect(() => {
     getPost();
-    if (document.cookie) {
-      setLoggedUser(
-        JSON.parse(
-          document?.cookie
-            ?.split(";")
-            .find((row) => row.startsWith("user="))
-            .split("=")[1]
-        )
-      );
-    }
+    
   }, [postId]);
 
   return (

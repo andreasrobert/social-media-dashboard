@@ -2,11 +2,11 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import InputComponent from "./minor/input";
+import useVerifyUser from "../hooks/useVerifyUser"
 
 export default function LoginPage({ users, setChangePage }) {
   const [username, setUsername] = useState("");
   const [loaded, setLoaded] = useState(false);
-  const [loggedUser, setLoggedUser] = useState();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -20,18 +20,10 @@ export default function LoginPage({ users, setChangePage }) {
     }
   };
 
+  const { loggedUser } = useVerifyUser(loaded)
+
+
   useEffect(() => {
-    if (document.cookie) {
-      setLoggedUser(
-        JSON.parse(
-          document.cookie
-            .split(";")
-            .find((row) => row.startsWith("user="))
-            .split("=")[1]
-        )
-      );
-      console.log("heloo");
-    }
     setLoaded(false);
   }, [loaded]);
 

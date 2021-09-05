@@ -5,9 +5,9 @@ import ViewPhoto from "../components/views/viewPhoto";
 import { Link } from "react-router-dom";
 
 function AlbumPage() {
-  const [albums, setAlbums] = useState([]); // .albumId, .userId
-  const [userData, setUserData] = useState([]); //.userId
-  const [photos, setPhotos] = useState([]); // .albumId,
+  const [albums, setAlbums] = useState([]); 
+  const [userData, setUserData] = useState([]); 
+  const [photos, setPhotos] = useState([]); 
   const [isAllowed, setIsAllowed] = useState(false);
 
   let { userId, albumId } = useParams();

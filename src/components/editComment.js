@@ -1,43 +1,24 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ButtonComponent from "./minor/button";
 import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
+import useHandleComment from "../hooks/useHandleUpdate";
 
 export default function EditComment({ getPost, setIsClicked, comment }) {
-  const [loading, setLoading] = useState(false);
-  const [newTitle, setTitle] = useState("");
-  const [newBody, setBody] = useState("");
+ 
+  const url = `https://kumparan-json-server.herokuapp.com/comments/${comment.id}`;
 
-  const handleEdit = (event) => {
-    setLoading(true);
-    event.preventDefault();
-    fetch(`https://kumparan-json-server.herokuapp.com/comments/${comment.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        name: newTitle,
-        body: newBody,
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => getPost())
-      .then(() => setLoading(false))
-      .then(() => setIsClicked(false));
-  };
-
-  const handleDelete = () => {
-    console.log("hello");
-    setLoading(true);
-    fetch(`https://kumparan-json-server.herokuapp.com/comments/${comment.id}`, {
-      method: "DELETE",
-    })
-      .then(() => getPost())
-      .then(() => setIsClicked(false));
-  };
+  const {
+    handleEdit,
+    handleDeleteComment,
+    loading,
+    newTitle,
+    setTitle,
+    newBody,
+    setBody,
+  } = useHandleComment(url, getPost, setIsClicked, "name");
 
   useEffect(() => {
     if (comment) {
@@ -90,7 +71,7 @@ export default function EditComment({ getPost, setIsClicked, comment }) {
               <DeleteButtonComponent
                 label="Delete"
                 loading={loading}
-                handleDelete={handleDelete}
+                handleDelete={handleDeleteComment}
               />
 
               <ButtonComponent label="Update" loading={loading} />

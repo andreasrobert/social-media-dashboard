@@ -1,23 +1,12 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EditComment from "../editComment";
+import useVerifyUser from "../../hooks/useVerifyUser"
 
 function ViewComment({ comment, getPost }) {
-  const [loggedUser, setLoggedUser] = useState();
   const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(() => {
-    if (document.cookie) {
-      setLoggedUser(
-        JSON.parse(
-          document?.cookie
-            ?.split(";")
-            .find((row) => row.startsWith("user="))
-            .split("=")[1]
-        )
-      );
-    }
-  }, []);
+  const { loggedUser } = useVerifyUser()
 
   return (
     <Flex

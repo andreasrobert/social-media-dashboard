@@ -9,7 +9,7 @@ function ViewPhoto({ photo }) {
       flexDir="column"
       alignItems="center"
       border="2px solid"
-        borderColor="borderColor"
+      borderColor="borderColor"
       borderRadius="8px"
       bg="black"
       minH="200px"

@@ -1,4 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import ViewUser from "../components/views/viewUser";
 import ViewPost from "../components/views/viewPost";
@@ -8,14 +8,17 @@ function View({ page, users }) {
   const [focus, setFocus] = useState("");
   const [posts, setPosts] = useState([]);
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading]= useState(false)
   const [content, setContent] = useState(true);
   const [mobile, setMobile] = useState(true);
 
   const getPosts = (userId, userData) => {
+    setLoading(true)
     fetch(`https://kumparan-json-server.herokuapp.com/users/${userId}/posts`)
       .then((response) => response.json())
       .then((res) => setPosts(res))
-      .then(() => setFocus(userData));
+      .then(() => setFocus(userData))
+      .then(()=> setLoading(false))
   };
 
   const getAlbums = (userId) => {
@@ -103,7 +106,7 @@ function View({ page, users }) {
             w="50%"
             onClick={() => setContent(true)}
           >
-            Posts
+           { loading?  <Spinner /> :"Posts"}
           </Heading>
 
           <Heading
@@ -125,7 +128,7 @@ function View({ page, users }) {
             w="50%"
             onClick={() => setContent(false)}
           >
-            Album
+           { loading?  <Spinner /> :"Album"}
           </Heading>
         </Flex>
         <Flex d={content ? "flex" : "none"} flexDir="column" w="100%">
