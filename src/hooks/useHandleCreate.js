@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import useVerifyUser from "./useVerifyUser";
+
 
 export default function useHandleCreate(id, getComments, page) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(false);
 
   const handleSubmitComment = (event) => {
@@ -51,19 +52,8 @@ export default function useHandleCreate(id, getComments, page) {
       .then((response) => response.json())
       .then(() => setLoading(false));
   };
-
-  useEffect(() => {
-    if (document.cookie) {
-      setLoggedUser(
-        JSON.parse(
-          document?.cookie
-            ?.split(";")
-            .find((row) => row.startsWith("user="))
-            .split("=")[1]
-        )
-      );
-    }
-  }, [loading, page]);
+  
+  const { loggedUser } = useVerifyUser(loading, page)
 
   return {
     handleSubmitComment,

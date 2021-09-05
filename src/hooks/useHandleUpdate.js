@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function useHandlePost(url, getPost, setClick, label) {
   const [loading, setLoading] = useState(false);
