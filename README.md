@@ -5,10 +5,14 @@
 
 
 
-Using json servers from https://jsonplaceholder.typicode.com/ and https://kumparan-json-server.herokuapp.com/
+Using json servers from https://jsonplaceholder.typicode.com/ and https://kumparan-json-server.herokuapp.com/ [[GIT]](https://github.com/andreasrobert/fake-data)
 
 user can view other user albums and posts with it's comments, 
 
 user can also create, update, and delete post and comments after logging in.
+
+
+
+
 
 
