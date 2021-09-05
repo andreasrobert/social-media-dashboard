@@ -9,63 +9,45 @@ const breakpoints = createBreakpoints({
   xl: "920px",
 });
 
+const components = {
+  Heading: {
+    baseStyle: {
+      color: "black",
+    },
+    sizes: {
+      H1: {
+        fontSize: { base: "4vw", lm: "40px" },
+        lineHeight: { base: "" },
+      },
+      H2: {
+        fontSize: { base: "20px" },
+        lineHeight: "25px",
+      },
+    },
+  },
+
+  Text: {
+    baseStyle: {
+      color: "black",
+    },
+    sizes: {
+      Body: {
+        fontWeight: "400",
+      },
+      P: {
+        fontSize: "16px",
+        fontWeight: "400",
+      },
+    },
+  },
+};
+
 export const theme = extendTheme({
-  components: {
-    Heading: {
-      baseStyle: {
-        fontFamily: "",
-        fontWeight: "",
-        color:"black"
-      },
-      sizes: {
-        H1: {
-          fontSize: {base:"4vw", lm: "40px" },
-          lineHeight: { base: "" },
-        },
-        H2: {
-          fontSize: { base: "20px" },
-          lineHeight: "25px",
-        },
-        H3: {
-          fontSize: "",
-          lineHeight: "",
-        },
-      },
-    },
-
-    Text: {
-      baseStyle: {
-        fontFamily: "",
-        fontWeight: "",
-        color:"black"
-      },
-      sizes: {
-        Body: {
-          fontWeight: "400",
-          // lineHeight: {
-          //   base: "",
-          // },
-        },
-        P:{
-          fontSize:"16px",
-          fontWeight: "400",
-        },
-      },
-    },
-  },
-
-  fonts: {
-    heading: "",
-    body: "",
-  },
-
-  colors:{
-    yellow:"#ffcf56",
-    black:"black",
-    borderColor:"black"
-  },
-
-  Input: {},
-
   breakpoints,
+  components,
+  colors: {
+    yellow: "#ffcf56",
+    black: "black",
+    borderColor: "black",
+  },
 });

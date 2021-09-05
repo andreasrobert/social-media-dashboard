@@ -13,6 +13,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState("view");
 
+  //storing list of users in the server
   const getUsers = () => {
     fetch("https://kumparan-json-server.herokuapp.com/users")
       .then((response) => response.json())
