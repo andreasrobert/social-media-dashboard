@@ -58,7 +58,7 @@ export const theme = extendTheme({
   },
 
   colors:{
-    yellow:"rgb(224, 224, 0)"
+    yellow:"#ffcf56"
   },
 
   Input: {},
