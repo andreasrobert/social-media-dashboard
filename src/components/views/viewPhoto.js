@@ -6,6 +6,8 @@ function ViewPhoto({ photo }) {
 
   return (
     <Flex
+      w={{ base: "44vw", md: "170px" }}
+      m={{ base: "5px", md: "10px" }}
       flexDir="column"
       alignItems="center"
       border="2px solid"
@@ -13,17 +15,15 @@ function ViewPhoto({ photo }) {
       borderRadius="8px"
       bg="black"
       minH="200px"
-      w="170px"
       p="10px"
-      m="10px"
     >
       <Image
+        boxSize={{ base: "38vw", md: "150px" }}
         src={photo.thumbnailUrl}
         cursor="pointer"
         border="2px solid"
         borderColor="borderColor"
         borderRadius="8px"
-        boxSize="150px"
         fit="fill"
         onClick={() => setFocus(!focus)}
       ></Image>
@@ -44,9 +44,9 @@ function ViewPhoto({ photo }) {
       >
         <a target="_blank" rel="noopener noreferrer" href={photo.url}>
           <Image
+            boxSize={{ base: "75vw", lm: "600px" }}
             src={photo.url}
             cursor="pointer"
-            boxSize="600px"
             fit="fill"
             onClick={(e) => e.stopPropagation()}
           ></Image>

@@ -40,14 +40,17 @@ const components = {
       },
     },
   },
+  
 };
 
+
 export const theme = extendTheme({
-  breakpoints,
-  components,
-  colors: {
-    yellow: "#ffcf56",
-    black: "black",
-    borderColor: "black",
-  },
+    breakpoints,
+    components,
+    colors: {
+      yellow: "#ffcf56",
+      black: "black",
+      borderColor: "black",
+    },
 });
+
