@@ -7,7 +7,7 @@ function Header({ setPage }) {
       borderBottom="2px solid black"
       justifyContent="space-around"
       alignItems="center"
-      bg="rgb(224, 224, 0)"
+      bg="yellow"
       h="70px"
       w="100%"
     >

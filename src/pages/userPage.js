@@ -30,7 +30,7 @@ function View({ page, users }) {
       flexDir={{ base: "column", lg: "row" }}
       d={page === "view" ? "flex" : "none"}
       justifyContent="center"
-      bg="rgb(224, 224, 0)"
+      bg="yellow"
       h="100%"
       w="100%"
       px="10px"

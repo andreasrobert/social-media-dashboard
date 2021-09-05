@@ -57,6 +57,10 @@ export const theme = extendTheme({
     body: "",
   },
 
+  colors:{
+    yellow:"rgb(224, 224, 0)"
+  },
+
   Input: {},
 
   breakpoints,

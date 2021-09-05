@@ -30,7 +30,7 @@ function App() {
       <Flex
         pos="absolute"
         flexDir="column"
-        bg="rgb(224, 224, 0)"
+        bg="yellow"
         minH="100%"
         w="100%"
       >

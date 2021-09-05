@@ -50,7 +50,7 @@ function Create({ page }) {
       d={page === "create" ? "flex" : "none"}
       alignItems="center"
       flexDir="column"
-      bg="rgb(224, 224, 0)"
+      bg="yellow"
       margin="auto"
       h="50vh"
     >

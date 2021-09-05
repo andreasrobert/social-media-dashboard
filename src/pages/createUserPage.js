@@ -11,7 +11,7 @@ function Create({ page, users, getUsers }) {
       d={page === "login" ? "flex" : "none"}
       alignItems="center"
       flexDir="column"
-      bg="rgb(224, 224, 0)"
+      bg="yellow"
       margin="auto"
       h="50vh"
     >

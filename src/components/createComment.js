@@ -51,7 +51,7 @@ export default function CreateComment({ postId, getComments }) {
     <Flex
       flexDir="column"
       alignItems="center"
-      bg="rgb(224, 224, 0)"
+      bg="yellow"
       margin="auto"
       minH="50vh"
       mb="30px"
