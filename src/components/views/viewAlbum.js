@@ -13,7 +13,8 @@ function ViewAlbum({ album, user }) {
     <Link to={`/user/${album.userId}/album/${album.id}`}>
       <Flex
         flexDir="column"
-        border="2px solid black"
+        border="2px solid"
+        borderColor="borderColor"
         borderRadius="8px"
         cursor="pointer"
         minH="80px"

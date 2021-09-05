@@ -22,7 +22,8 @@ function ViewComment({ comment, getPost }) {
   return (
     <Flex
       flexDir="column"
-      border="2px solid black"
+      border="2px solid"
+        borderColor="borderColor"
       borderRadius="8px"
       w="100%"
       my="10px"

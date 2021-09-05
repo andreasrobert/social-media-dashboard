@@ -20,7 +20,8 @@ function ViewUser({ user, getPosts, getAlbums, setMobile }) {
   return (
     <Flex
       flexDir="column"
-      border="2px solid black"
+      border="2px solid"
+      borderColor="borderColor"
       borderRadius="8px"
       cursor="pointer"
       minH="80px"

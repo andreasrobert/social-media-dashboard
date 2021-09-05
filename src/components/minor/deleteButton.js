@@ -1,19 +1,24 @@
 import { Button } from "@chakra-ui/react";
 
-export default function DeleteButtonComponent({ label, loading, handleDelete }) {
+export default function DeleteButtonComponent({
+  label,
+  loading,
+  handleDelete,
+}) {
   return (
     <Button
-      _hover={{ bg: "black", color: "yellow !important" }}
+      _hover={{ bg: "black", color: "yellow" }}
       _active={{
         bg: "black",
-        color: "yellow !important",
+        color: "yellow",
       }}
       _focus={{
         boxShadow: "none",
       }}
       alignSelf="flex-end"
-      border="2px solid black"
-      color="black !important"
+      border="2px solid"
+      borderColor="borderColor"
+      color="black"
       bg="yellow"
       fontWeight="700"
       my="40px"

@@ -60,7 +60,8 @@ export default function EditComment({ getPost, setIsClicked, comment }) {
     >
       <Flex
         w={{ base: "90vw", xl: "900px" }}
-        border="4px solid black"
+        border="3px solid"
+        borderColor="borderColor"
         borderRadius="80px"
         justifyContent="center"
         alignItems="center"

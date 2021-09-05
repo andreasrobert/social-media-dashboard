@@ -51,19 +51,20 @@ function AlbumPage() {
           }
           return (
             <Link key={album.id} to={`/user/${userData.id}/album/${album.id}`}>
-              <Flex
-                color={album.id == albumId ? "yellow" : "inherit"}
-                bg={album.id == albumId ? "black" : "inherit"}
-                _hover={{ bg: "black", color: "yellow" }}
-                border="2px solid black"
-                alignItems="center"
-                borderRadius="8px"
-                minH="80%"
-                px="3px"
-                m="3px"
-              >
-                <Text>{album.title}</Text>
-              </Flex>
+                <Text
+                  color={album.id == albumId ? "yellow" : "black"}
+                  bg={album.id == albumId ? "black" : "inherit"}
+                  _hover={{ bg: "black", color: "yellow" }}
+                  textAlign="center"
+                  border="2px solid"
+                  borderColor="borderColor"
+                  borderRadius="8px"
+                  minH="80%"
+                  px="3px"
+                  m="3px"
+                >
+                  {album.title}
+                </Text>
             </Link>
           );
         })}

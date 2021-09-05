@@ -55,7 +55,8 @@ function Post() {
       <Flex flexDir="column" alignItems="center" w="700px" p="10px">
         <Flex
           flexDir="column"
-          border="2px solid black"
+          border="2px solid"
+        borderColor="borderColor"
           borderRadius="8px"
           w="100%"
           my="50px"

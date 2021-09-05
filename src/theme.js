@@ -15,6 +15,7 @@ export const theme = extendTheme({
       baseStyle: {
         fontFamily: "",
         fontWeight: "",
+        color:"black"
       },
       sizes: {
         H1: {
@@ -36,6 +37,7 @@ export const theme = extendTheme({
       baseStyle: {
         fontFamily: "",
         fontWeight: "",
+        color:"black"
       },
       sizes: {
         Body: {
@@ -58,7 +60,9 @@ export const theme = extendTheme({
   },
 
   colors:{
-    yellow:"#ffcf56"
+    yellow:"#ffcf56",
+    black:"black",
+    borderColor:"black"
   },
 
   Input: {},

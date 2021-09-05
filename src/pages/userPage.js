@@ -41,20 +41,21 @@ function View({ page, users }) {
         alignItems="center"
         flexDir="column"
       >
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          border="2px solid black"
+        <Heading
+          textAlign="center"
+          border="2px solid"
+          borderColor="borderColor"
           borderRadius="8px"
           minH="40px"
+          size="H2"
           w="100%"
           my="10px"
           p="10px"
           cursor={mobile ? "" : "pointer"}
           onClick={() => setMobile(true)}
         >
-          <Heading size="H2">Users</Heading>
-        </Flex>
+          Users
+        </Heading>
         {mobile
           ? users?.map((user) => {
               return (
@@ -84,43 +85,48 @@ function View({ page, users }) {
           w="100%"
           m="10px"
         >
-          <Flex
+          <Heading
             _hover={{
               bg: "black",
               color: "yellow",
               textDecoration: "underline",
             }}
-            color={content ? "yellow" : "inherit"}
+            color={content ? "yellow" : "black"}
             bg={content ? "black" : "inherit"}
-            justifyContent="center"
+            textAlign="center"
             borderRadius="8px 0 0 8px"
-            border="2px solid black"
+            border="2px solid"
+            borderColor="borderColor"
             cursor="pointer"
+            size="H2"
             p="10px"
             w="50%"
             onClick={() => setContent(true)}
           >
-            <Heading size="H2">Posts</Heading>
-          </Flex>
-          <Flex
+            Posts
+          </Heading>
+
+          <Heading
             _hover={{
               bg: "black",
               color: "yellow",
               textDecoration: "underline",
             }}
-            color={content ? "inherit" : "yellow"}
+            color={content ? "black" : "yellow"}
             bg={content ? "inherit" : "black"}
-            justifyContent="center"
+            textAlign="center"
             borderRadius="0 8px 8px 0"
-            border="2px solid black"
+            border="2px solid"
+            borderColor="borderColor"
             borderLeft="0px"
             cursor="pointer"
+            size="H2"
             p="10px"
             w="50%"
             onClick={() => setContent(false)}
           >
-            <Heading size="H2">Album</Heading>
-          </Flex>
+            Album
+          </Heading>
         </Flex>
         <Flex d={content ? "flex" : "none"} flexDir="column" w="100%">
           {posts.map((post) => {

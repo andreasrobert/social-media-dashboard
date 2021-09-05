@@ -4,6 +4,7 @@ import ButtonComponent from "./minor/button";
 import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
+// import useHandleEdit from "../hooks/useHandleEdit";
 
 export default function EditPost({ postId, title, body, setClick, getPost }) {
   const [loading, setLoading] = useState(false);
@@ -28,6 +29,8 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
       .then(() => setLoading(false))
       .then(() => setClick(false));
   };
+
+  // useHandleEdit(postId, newTitle, newBody, getPost, setLoading, setClick)
 
   const handleDelete = () => {
     console.log("hello");
@@ -60,7 +63,8 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
         w={{ base: "90vw", xl: "900px" }}
         justifyContent="center"
         alignItems="center"
-        border="4px solid black"
+        border="3px solid"
+        borderColor="borderColor"
         borderRadius="80px"
         flexDir="column"
         minH="400px"

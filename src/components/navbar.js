@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 function Header({ setPage }) {
   return (
     <Flex
-      borderBottom="2px solid black"
+      borderBottom="2px solid"
+      borderColor="borderColor"
       justifyContent="space-around"
       alignItems="center"
       bg="yellow"

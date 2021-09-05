@@ -8,7 +8,8 @@ function ViewPhoto({ photo }) {
     <Flex
       flexDir="column"
       alignItems="center"
-      border="2px solid black"
+      border="2px solid"
+        borderColor="borderColor"
       borderRadius="8px"
       bg="black"
       minH="200px"
@@ -19,7 +20,8 @@ function ViewPhoto({ photo }) {
       <Image
         src={photo.thumbnailUrl}
         cursor="pointer"
-        border="2px solid black"
+        border="2px solid"
+        borderColor="borderColor"
         borderRadius="8px"
         boxSize="150px"
         fit="fill"
