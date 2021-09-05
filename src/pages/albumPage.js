@@ -8,29 +8,29 @@ function AlbumPage() {
   const [albums, setAlbums] = useState([]); 
   const [userData, setUserData] = useState([]); 
   const [photos, setPhotos] = useState([]); 
-  const [isAllowed, setIsAllowed] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(false);  // won't fetch album if user doesn't have the right albumId in the url params
 
-  let { userId, albumId } = useParams();
-
-  const getAllUserAlbums = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/albums`)
-      .then((response) => response.json())
-      .then((res) => setAlbums(res));
-  };
-
-  const getUser = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-      .then((response) => response.json())
-      .then((res) => setUserData(res));
-  };
-
-  const getPhotos = () => {
-    fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
-      .then((response) => response.json())
-      .then((res) => setPhotos(res));
-  };
+  let { userId, albumId } = useParams();  // route-> siteName/user/:userId/album/:albumId
 
   useEffect(() => {
+    const getAllUserAlbums = () => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}/albums`)
+        .then((response) => response.json())
+        .then((res) => setAlbums(res));
+    };
+  
+    const getUser = () => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then((response) => response.json())
+        .then((res) => setUserData(res));
+    };
+  
+    const getPhotos = () => {
+      fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
+        .then((response) => response.json())
+        .then((res) => setPhotos(res));
+    };
+
     if (!isAllowed) {
       getUser();
       getAllUserAlbums();
@@ -39,11 +39,14 @@ function AlbumPage() {
     if (isAllowed) {
       getPhotos();
     }
+
   }, [userId, albumId, isAllowed]);
 
   return (
     <Flex flexDir="column" alignItems="center">
       <Heading my="10px">u/{userData.username} Albums</Heading>
+
+      {/* List of user albums */}
       <Flex justifyContent="center" flexWrap="wrap" w="70%">
         {albums.map((album) => {
           if (album.id == albumId && !isAllowed) {
@@ -70,6 +73,7 @@ function AlbumPage() {
         })}
       </Flex>
 
+      {/* List of album photos */}
       <Flex flexWrap="wrap" justifyContent="center">
         {photos.map((photo) => {
           return <ViewPhoto photo={photo} key={photo.id}></ViewPhoto>;

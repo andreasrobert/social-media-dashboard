@@ -4,7 +4,7 @@ import CreateUser from "./pages/createUserPage";
 import { useState, useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
 import Header from "./components/navbar";
-import UserPage from "./pages/userPage";
+import UsersPage from "./pages/usersPage";
 import PostPage from "./pages/postPage";
 import AlbumPage from "./pages/albumPage";
 import "./app.css";
@@ -38,7 +38,7 @@ function App() {
         <Header setPage={setPage}></Header>
         <Switch>
           <Route exact path="/">
-            <UserPage page={page} users={users}></UserPage>
+            <UsersPage page={page} users={users}></UsersPage>
             <CreatePost page={page}></CreatePost>
             <CreateUser
               page={page}

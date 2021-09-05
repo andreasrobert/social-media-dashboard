@@ -10,7 +10,7 @@ function Post() {
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [comments, setComments] = useState([]);
-  const [click, setClick] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   let { postId } = useParams();
 
@@ -36,21 +36,21 @@ function Post() {
       });
   };
 
-  const { loggedUser } = useVerifyUser(postId)
-
+  const { loggedUser } = useVerifyUser(postId);
 
   useEffect(() => {
     getPost();
-    
   }, [postId]);
 
   return (
     <Flex justifyContent="center">
       <Flex flexDir="column" alignItems="center" w="700px" p="10px">
+
+        {/* The Post */}
         <Flex
           flexDir="column"
           border="2px solid"
-        borderColor="borderColor"
+          borderColor="borderColor"
           borderRadius="8px"
           w="100%"
           my="50px"
@@ -59,7 +59,7 @@ function Post() {
           <Flex justifyContent="space-between">
             <Text fontWeight="500">By u/{userData.username}</Text>
             {loggedUser?.username === userData?.username && loggedUser ? (
-              <Text onClick={() => setClick(true)} cursor="pointer">
+              <Text onClick={() => setShowEdit(true)} cursor="pointer">
                 edit
               </Text>
             ) : (
@@ -71,19 +71,33 @@ function Post() {
             {postData.body}
           </Text>
         </Flex>
-        <CreateComment postId={postId} getComments={getComments}></CreateComment>
-        {comments.slice(0).reverse().map((comment) => {
-          return (
-            <ViewComment
-              getPost={getPost}
-              key={comment.id}
-              comment={comment}
-            ></ViewComment>
-          );
-        })}
-        {loggedUser?.username === userData?.username && loggedUser && click ? (
+
+        {/* Create Comment */}
+        <CreateComment
+          postId={postId}
+          getComments={getComments}
+        ></CreateComment>
+
+        {/* List of Comments */}
+        {comments
+          .slice(0)
+          .reverse()
+          .map((comment) => {
+            return (
+              <ViewComment
+                getPost={getPost}
+                key={comment.id}
+                comment={comment}
+              ></ViewComment>
+            );
+          })}
+
+        {/* Enable logged user to edit their comment */}
+        {loggedUser?.username === userData?.username &&
+        loggedUser &&
+        showEdit ? (
           <EditPost
-            setClick={setClick}
+            setShowEdit={setShowEdit}
             getPost={getPost}
             postId={postId}
             title={postData.title}

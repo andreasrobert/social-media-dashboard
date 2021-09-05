@@ -6,7 +6,7 @@ import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 import useHandlePost from "../hooks/useHandleUpdate";
 
-export default function EditPost({ postId, title, body, setClick, getPost }) {
+export default function EditPost({ postId, title, body, setShowEdit, getPost }) {
   
   const url = `https://kumparan-json-server.herokuapp.com/posts/${postId}`;
 
@@ -18,7 +18,7 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
     setTitle,
     newBody,
     setBody,
-  } = useHandlePost(url, getPost, setClick, "title");
+  } = useHandlePost(url, getPost, setShowEdit, "title");
 
   useEffect(() => {
     if (title && body) {
@@ -37,7 +37,7 @@ export default function EditPost({ postId, title, body, setClick, getPost }) {
       left="0px"
       w="100%"
       h="100%"
-      onClick={() => setClick(false)}
+      onClick={() => setShowEdit(false)}
     >
       <Flex
         w={{ base: "90vw", xl: "900px" }}

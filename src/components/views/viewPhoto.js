@@ -2,7 +2,7 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 function ViewPhoto({ photo }) {
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(false);  // true -> show full picture
 
   return (
     <Flex

@@ -6,8 +6,8 @@ import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 import useHandleComment from "../hooks/useHandleUpdate";
 
-export default function EditComment({ getPost, setIsClicked, comment }) {
- 
+export default function EditComment({ getPost, setShowEdit, comment }) {
+  
   const url = `https://kumparan-json-server.herokuapp.com/comments/${comment.id}`;
 
   const {
@@ -18,7 +18,7 @@ export default function EditComment({ getPost, setIsClicked, comment }) {
     setTitle,
     newBody,
     setBody,
-  } = useHandleComment(url, getPost, setIsClicked, "name");
+  } = useHandleComment(url, getPost, setShowEdit, "name");
 
   useEffect(() => {
     if (comment) {
@@ -37,7 +37,7 @@ export default function EditComment({ getPost, setIsClicked, comment }) {
       left="0px"
       w="100%"
       h="100%"
-      onClick={() => setIsClicked(false)}
+      onClick={() => setShowEdit(false)}
     >
       <Flex
         w={{ base: "90vw", xl: "900px" }}

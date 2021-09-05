@@ -4,7 +4,7 @@ import LoginPage from "../components/login";
 import RegisterPage from "../components/register";
 
 function Create({ page, users, getUsers }) {
-  const [changePage, setChangePage] = useState(true);
+  const [changePage, setChangePage] = useState(true); 
 
   return (
     <Flex

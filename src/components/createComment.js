@@ -29,6 +29,7 @@ export default function CreateComment({ postId, getComments }) {
       <Heading size="H2" mt="5px">
         {loggedUser ? `as u/${loggedUser?.username}` : "Please login!"}
       </Heading>
+      
       <form onSubmit={handleSubmitComment}>
         <Flex w={{ base: "90vw", lg: "500px" }} flexDir="column">
           <InputComponent

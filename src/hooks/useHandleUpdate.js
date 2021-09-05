@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useHandlePost(url, getPost, setClick, label) {
+export default function useHandlePost(url, getPost, setShowEdit, label) {
   const [loading, setLoading] = useState(false);
   const [newTitle, setTitle] = useState("");
   const [newBody, setBody] = useState("");
@@ -21,7 +21,7 @@ export default function useHandlePost(url, getPost, setClick, label) {
       .then((response) => response.json())
       .then(() => getPost())
       .then(() => setLoading(false))
-      .then(() => setClick(false));
+      .then(() => setShowEdit(false));
   };
 
   const handleDeletePost = () => {
@@ -37,7 +37,7 @@ export default function useHandlePost(url, getPost, setClick, label) {
       method: "DELETE",
     })
       .then(() => getPost())
-      .then(() => setClick(false));
+      .then(() => setShowEdit(false));
   };
 
   return {

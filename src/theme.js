@@ -17,7 +17,6 @@ const components = {
     sizes: {
       H1: {
         fontSize: { base: "4vw", lm: "40px" },
-        lineHeight: { base: "" },
       },
       H2: {
         fontSize: { base: "20px" },

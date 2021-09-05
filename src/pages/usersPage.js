@@ -5,20 +5,20 @@ import ViewPost from "../components/views/viewPost";
 import ViewAlbum from "../components/views/viewAlbum";
 
 function View({ page, users }) {
-  const [focus, setFocus] = useState("");
   const [posts, setPosts] = useState([]);
   const [albums, setAlbums] = useState([]);
-  const [loading, setLoading]= useState(false)
-  const [content, setContent] = useState(true);
-  const [mobile, setMobile] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState(true);   // true-> show posts || false -> show albums
+  const [mobile, setMobile] = useState(true);    // UX design change when width is small
+  const [focus, setFocus] = useState("");       // which user to show their posts/albums
 
   const getPosts = (userId, userData) => {
-    setLoading(true)
+    setLoading(true);
     fetch(`https://kumparan-json-server.herokuapp.com/users/${userId}/posts`)
       .then((response) => response.json())
       .then((res) => setPosts(res))
       .then(() => setFocus(userData))
-      .then(()=> setLoading(false))
+      .then(() => setLoading(false));
   };
 
   const getAlbums = (userId) => {
@@ -38,12 +38,15 @@ function View({ page, users }) {
       w="100%"
       px="10px"
     >
+      
       {/* Left Side */}
       <Flex
         w={{ base: "90vw", lg: "300px" }}
         alignItems="center"
         flexDir="column"
       >
+
+        {/* Left Side Header */}
         <Heading
           textAlign="center"
           border="2px solid"
@@ -59,6 +62,8 @@ function View({ page, users }) {
         >
           Users
         </Heading>
+
+        {/* List of users */}
         {mobile
           ? users?.map((user) => {
               return (
@@ -88,6 +93,8 @@ function View({ page, users }) {
           w="100%"
           m="10px"
         >
+
+          {/* Right Side Header */}
           <Heading
             _hover={{
               bg: "black",
@@ -106,7 +113,7 @@ function View({ page, users }) {
             w="50%"
             onClick={() => setContent(true)}
           >
-           { loading?  <Spinner /> :"Posts"}
+            {loading ? <Spinner /> : "Posts"}
           </Heading>
 
           <Heading
@@ -128,9 +135,11 @@ function View({ page, users }) {
             w="50%"
             onClick={() => setContent(false)}
           >
-           { loading?  <Spinner /> :"Album"}
+            {loading ? <Spinner /> : "Album"}
           </Heading>
         </Flex>
+
+        {/* List of Posts */}
         <Flex d={content ? "flex" : "none"} flexDir="column" w="100%">
           {posts.map((post) => {
             if (post) {
@@ -142,6 +151,7 @@ function View({ page, users }) {
           })}
         </Flex>
 
+        {/* List of Albums */}
         <Flex d={content ? "none" : "flex"} flexDir="column" w="100%">
           {albums.map((album) => {
             if (album) {

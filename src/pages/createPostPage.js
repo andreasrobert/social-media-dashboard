@@ -29,6 +29,7 @@ function Create({ page }) {
       <Heading size="H2" mt="5px">
         {loggedUser ? `as u/${loggedUser?.username}` : "Please login!"}
       </Heading>
+
       <form onSubmit={handleSubmitPost}>
         <Flex flexDir="column" w={{ base: "90vw", lg: "500px" }}>
           <InputComponent
@@ -41,6 +42,7 @@ function Create({ page }) {
           <TextAreaComponent value={body} setValue={setBody} label="Body" />
 
           <ButtonComponent label="Submit" loading={loading} />
+          
         </Flex>
       </form>
     </Flex>

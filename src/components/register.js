@@ -48,6 +48,7 @@ export default function RegisterPage({ users, setChangePage, changePage, getUser
       <Heading size="H2" mt="5px">
         {used ? `username is already taken` : ""}
       </Heading>
+      
       <form onSubmit={handleRegister}>
         <Flex flexDir="column" w={{ base: "90vw", lg: "500px" }}>
           <InputComponent
