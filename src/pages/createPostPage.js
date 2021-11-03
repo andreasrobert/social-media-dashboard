@@ -3,6 +3,8 @@ import ButtonComponent from "../components/minor/button";
 import InputComponent from "../components/minor/input";
 import TextAreaComponent from "../components/minor/textArea";
 import useHandleCreate from "../hooks/useHandleCreate";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 function Create({ page }) {
   
@@ -16,12 +18,15 @@ function Create({ page }) {
     loading,
   } = useHandleCreate("", "", page);
 
+  const {theme, themeDispatch} = useContext(ThemeContext);
+
+
   return (
     <Flex
       d={page === "create" ? "flex" : "none"}
       alignItems="center"
       flexDir="column"
-      bg="yellow"
+      bg={theme.bg}
       margin="auto"
       h="50vh"
     >

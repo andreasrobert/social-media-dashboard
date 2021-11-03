@@ -7,10 +7,8 @@ export default function useHandleEdit(x, y) {
     if (document.cookie) {
       setLoggedUser(
         JSON.parse(
-          document?.cookie
-            ?.split(";")
-            .find((row) => row.startsWith("user="))
-            .split("=")[1]
+          document?.cookie?.split(";")
+            .find((row) => row.startsWith("user="))?.split("=")[1]
         )
       );
     }

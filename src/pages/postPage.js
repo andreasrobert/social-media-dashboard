@@ -5,6 +5,8 @@ import ViewComment from "../components/views/viewComment";
 import CreateComment from "../components/createComment";
 import EditPost from "../components/editPost";
 import useVerifyUser from "../hooks/useVerifyUser";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 function Post() {
   const [postData, setPostData] = useState([]);
@@ -12,6 +14,7 @@ function Post() {
   const [comments, setComments] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
 
+  const {theme} = useContext(ThemeContext);
   let { postId } = useParams();
 
   const getUser = (userId) => {
@@ -50,7 +53,7 @@ function Post() {
         <Flex
           flexDir="column"
           border="2px solid"
-          borderColor="borderColor"
+          borderColor={theme.line}
           borderRadius="8px"
           w="100%"
           my="50px"

@@ -5,9 +5,12 @@ import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 import useHandlePost from "../hooks/useHandleUpdate";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 export default function EditPost({ postId, title, body, setShowEdit, getPost }) {
-  
+  const {theme} = useContext(ThemeContext);
+
   const url = `https://kumparan-json-server.herokuapp.com/posts/${postId}`;
 
   const {
@@ -44,12 +47,12 @@ export default function EditPost({ postId, title, body, setShowEdit, getPost }) 
         justifyContent="center"
         alignItems="center"
         border="3px solid"
-        borderColor="borderColor"
+        borderColor={theme.line}
         borderRadius="80px"
         flexDir="column"
         minH="400px"
         py="30px"
-        bg="yellow"
+        bg={theme.bg}
         onClick={(e) => e.stopPropagation()}
       >
         <Heading>Edit post</Heading>

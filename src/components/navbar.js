@@ -1,14 +1,26 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../hooks/useTheme";
+import React, { useContext } from "react";
 
 function Header({ setPage }) {
+  const {theme, themeDispatch} = useContext(ThemeContext);
+
+  const changeTheme = () =>{
+    if (theme.bg === "yellow") themeDispatch("red")
+    if (theme.bg === "red") themeDispatch("green")
+    if (theme.bg === "green") themeDispatch("blue")
+    if (theme.bg === "blue") themeDispatch("yellow")
+    console.log(theme)
+  }
+
   return (
     <Flex
       borderBottom="2px solid"
-      borderColor="borderColor"
+      borderColor={theme.line}
       justifyContent="space-around"
       alignItems="center"
-      bg="yellow"
+      bg={theme.bg}
       h="70px"
       w="100%"
     >
@@ -27,6 +39,7 @@ function Header({ setPage }) {
           Login User
         </Heading>
       </Link>
+      <Flex position="absolute" right="0px" h="35px" w="35px" bg={theme.col} color={theme.bg} onClick={()=> changeTheme()} cursor="pointer" p="1px" fontSize="9px">change color</Flex>
     </Flex>
   );
 }

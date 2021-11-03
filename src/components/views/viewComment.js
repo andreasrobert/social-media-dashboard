@@ -2,17 +2,20 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import EditComment from "../editComment";
 import useVerifyUser from "../../hooks/useVerifyUser";
+import { ThemeContext } from "../../hooks/useTheme"
+import { useContext } from "react";
 
 function ViewComment({ comment, getPost }) {
   const [showEdit, setShowEdit] = useState(false);
 
+  const {theme} = useContext(ThemeContext);
   const { loggedUser } = useVerifyUser();
 
   return (
     <Flex
       flexDir="column"
       border="2px solid"
-      borderColor="borderColor"
+      borderColor={theme.line}
       borderRadius="8px"
       w="100%"
       my="10px"

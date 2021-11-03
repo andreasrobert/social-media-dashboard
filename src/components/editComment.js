@@ -5,9 +5,12 @@ import DeleteButtonComponent from "./minor/deleteButton";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 import useHandleComment from "../hooks/useHandleUpdate";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 export default function EditComment({ getPost, setShowEdit, comment }) {
-  
+  const {theme} = useContext(ThemeContext);
+
   const url = `https://kumparan-json-server.herokuapp.com/comments/${comment.id}`;
 
   const {
@@ -42,14 +45,14 @@ export default function EditComment({ getPost, setShowEdit, comment }) {
       <Flex
         w={{ base: "90vw", xl: "900px" }}
         border="3px solid"
-        borderColor="borderColor"
+        borderColor={theme.line}
         borderRadius="80px"
         justifyContent="center"
         alignItems="center"
         flexDir="column"
         minH="400px"
         py="30px"
-        bg="yellow"
+        bg={theme.bg}
         onClick={(e) => e.stopPropagation()}
       >
         <Heading>Edit post</Heading>

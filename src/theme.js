@@ -12,7 +12,7 @@ const breakpoints = createBreakpoints({
 const components = {
   Heading: {
     baseStyle: {
-      color: "black",
+      // color: "black",
     },
     sizes: {
       H1: {
@@ -27,7 +27,7 @@ const components = {
 
   Text: {
     baseStyle: {
-      color: "black",
+      // color: "black",
     },
     sizes: {
       Body: {
@@ -43,13 +43,30 @@ const components = {
 };
 
 
+// export const theme = extendTheme({
+//     breakpoints,
+//     components,
+//     colors: {
+//       yellow: "#ffcf56",
+//       black: "black",
+//       borderColor: "black",
+//     },
+// });
+
 export const theme = extendTheme({
-    breakpoints,
-    components,
-    colors: {
-      yellow: "#ffcf56",
-      black: "black",
-      borderColor: "black",
-    },
+  breakpoints,
+  components,
+  colors: {
+    yellow: "#ffcf56",
+    black:"black",
+    red: "#522828",
+    grey: "#b1b1b1",
+    lightGrey: "#8f8f8f",
+    green:"#656d4a",
+    grgray:"#ede0d4",
+    blue:"#26547c",
+    pink:"#db4a6c"
+  },
 });
+
 

@@ -1,8 +1,12 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { ThemeContext } from "../../hooks/useTheme"
+import { useContext } from "react";
 
 function ViewPhoto({ photo }) {
   const [focus, setFocus] = useState(false);  // true -> show full picture
+
+  const {theme} = useContext(ThemeContext);
 
   return (
     <Flex
@@ -11,9 +15,9 @@ function ViewPhoto({ photo }) {
       flexDir="column"
       alignItems="center"
       border="2px solid"
-      borderColor="borderColor"
+      borderColor={theme.line}
       borderRadius="8px"
-      bg="black"
+      bg={theme.col}
       minH="200px"
       p="10px"
     >
@@ -22,12 +26,12 @@ function ViewPhoto({ photo }) {
         src={photo.thumbnailUrl}
         cursor="pointer"
         border="2px solid"
-        borderColor="borderColor"
+        borderColor={theme.line}
         borderRadius="8px"
         fit="fill"
         onClick={() => setFocus(!focus)}
       ></Image>
-      <Text color="yellow" fontWeight="400" mt="4px">
+      <Text color={theme.bg} fontWeight="400" mt="4px">
         {photo.title}
       </Text>
       <Flex

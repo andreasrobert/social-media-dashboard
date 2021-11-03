@@ -8,11 +8,15 @@ import UsersPage from "./pages/usersPage";
 import PostPage from "./pages/postPage";
 import AlbumPage from "./pages/albumPage";
 import "./app.css";
+import { ThemeContext } from "./hooks/useTheme"
+import { useContext } from "react";
+
 
 function App() {
+  const {theme} = useContext(ThemeContext);
+
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState("view");
-
   //storing list of users in the server
   const getUsers = () => {
     fetch("https://kumparan-json-server.herokuapp.com/users")
@@ -31,9 +35,10 @@ function App() {
       <Flex
         pos="absolute"
         flexDir="column"
-        bg="yellow"
+        bg={theme.bg}
         minH="100%"
         w="100%"
+        color={theme.col}
       >
         <Header setPage={setPage}></Header>
         <Switch>

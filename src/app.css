@@ -10,7 +10,7 @@ height: 100%;
 background-color: rgb(223, 223, 68);
 display: flex;
 font-family: "Space Mono", monospace;
-color: black !important;
+/* color: black !important; */
 font-weight: 700;
 font-size: 1.75vh;
 }

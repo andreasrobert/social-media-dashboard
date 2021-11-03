@@ -1,6 +1,10 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
+import { ThemeContext } from "../../hooks/useTheme"
+import { useContext } from "react";
 
 export default function InputComponent({ value, setValue, label, width }) {
+  const {theme} = useContext(ThemeContext);
+
   return (
     <Flex
       alignItems={{ xl: "center" }}
@@ -19,15 +23,15 @@ export default function InputComponent({ value, setValue, label, width }) {
         {label} :
       </Heading>
       <Input
-        _hover={{ borderColor: "borderColor" }}
+        _hover={{ borderColor: theme.line }}
         placeholder=". . ."
         _placeholder={{
-          color: "black",
+          color: theme.col,
         }}
         border="2px solid"
-        borderColor="borderColor"
+        borderColor={theme.line}
         focusBorderColor="none"
-        color="black"
+        color={theme.col}
         required
         value={value}
         onChange={(e) => setValue(e.target.value)}

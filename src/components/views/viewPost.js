@@ -1,9 +1,13 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../hooks/useTheme"
+import { useContext } from "react";
 
 function ViewPost({ post, user }) {
   const [hovered, setHovered] = useState(false);
+
+  const {theme} = useContext(ThemeContext);
 
   const handleHover = () => {
     setHovered(!hovered);
@@ -15,7 +19,7 @@ function ViewPost({ post, user }) {
         flexDir="column"
         borderRadius="8px"
         border="2px solid"
-        borderColor="borderColor"
+        borderColor={theme.line}
         cursor="pointer"
         minH="80px"
         my="10px"

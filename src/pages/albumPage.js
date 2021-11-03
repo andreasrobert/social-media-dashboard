@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ViewPhoto from "../components/views/viewPhoto";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 function AlbumPage() {
   const [albums, setAlbums] = useState([]);
@@ -11,6 +13,8 @@ function AlbumPage() {
   const [isAllowed, setIsAllowed] = useState(false); // won't fetch album if user doesn't have the right albumId in the url params
 
   let { userId, albumId } = useParams(); // route-> siteName/user/:userId/album/:albumId
+
+  const {theme, themeDispatch} = useContext(ThemeContext);
 
   useEffect(() => {
     const getAllUserAlbums = () => {
@@ -56,12 +60,12 @@ function AlbumPage() {
           return (
             <Link key={album.id} to={`/user/${userData.id}/album/${album.id}`}>
               <Text
-                color={album.id == albumId ? "yellow" : "black"}
-                bg={album.id == albumId ? "black" : "inherit"}
-                _hover={{ bg: "black", color: "yellow" }}
+                color={album.id == albumId ? `${theme.bg}` : theme.col }
+                bg={album.id == albumId ? theme.col : "inherit"}
+                _hover={{ bg: theme.col, color: theme.bg }}
                 textAlign="center"
                 border="2px solid"
-                borderColor="borderColor"
+                borderColor={theme.line}
                 borderRadius="8px"
                 minH="80%"
                 px="3px"

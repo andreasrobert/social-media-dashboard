@@ -1,8 +1,12 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { ThemeContext } from "../../hooks/useTheme"
+import { useContext } from "react";
 
 function ViewUser({ user, getPosts, getAlbums, setMobile }) {
   const [hovered, setHovered] = useState(false);
+
+  const {theme} = useContext(ThemeContext);
 
   const handleHover = () => {
     setHovered(!hovered);
@@ -21,7 +25,7 @@ function ViewUser({ user, getPosts, getAlbums, setMobile }) {
     <Flex
       flexDir="column"
       border="2px solid"
-      borderColor="borderColor"
+      borderColor={theme.line}
       borderRadius="8px"
       cursor="pointer"
       minH="80px"

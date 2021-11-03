@@ -3,9 +3,12 @@ import ButtonComponent from "./minor/button";
 import InputComponent from "./minor/input";
 import TextAreaComponent from "./minor/textArea";
 import useHandleCreate from "../hooks/useHandleCreate";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 export default function CreateComment({ postId, getComments }) {
-  
+  const {theme} = useContext(ThemeContext);
+
   const {
     handleSubmitComment,
     loggedUser,
@@ -20,7 +23,7 @@ export default function CreateComment({ postId, getComments }) {
     <Flex
       flexDir="column"
       alignItems="center"
-      bg="yellow"
+      bg={theme.bg}
       margin="auto"
       minH="50vh"
       mb="30px"

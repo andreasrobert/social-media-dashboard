@@ -3,6 +3,8 @@ import { useState } from "react";
 import ViewUser from "../components/views/viewUser";
 import ViewPost from "../components/views/viewPost";
 import ViewAlbum from "../components/views/viewAlbum";
+import { ThemeContext } from "../hooks/useTheme"
+import { useContext } from "react";
 
 function View({ page, users }) {
   const [posts, setPosts] = useState([]);
@@ -11,6 +13,8 @@ function View({ page, users }) {
   const [content, setContent] = useState(true);   // true-> show posts || false -> show albums
   const [mobile, setMobile] = useState(true);    // UX design change when width is small
   const [focus, setFocus] = useState("");       // which user to show their posts/albums
+
+  const {theme, themeDispatch} = useContext(ThemeContext);
 
   const getPosts = (userId, userData) => {
     setLoading(true);
@@ -33,7 +37,7 @@ function View({ page, users }) {
       flexDir={{ base: "column", lg: "row" }}
       d={page === "view" ? "flex" : "none"}
       justifyContent="center"
-      bg="yellow"
+      bg={theme.bg}
       h="100%"
       w="100%"
       px="10px"
@@ -50,7 +54,7 @@ function View({ page, users }) {
         <Heading
           textAlign="center"
           border="2px solid"
-          borderColor="borderColor"
+          borderColor={theme.line}
           borderRadius="8px"
           minH="40px"
           size="H2"
@@ -97,16 +101,16 @@ function View({ page, users }) {
           {/* Right Side Header */}
           <Heading
             _hover={{
-              bg: "black",
-              color: "yellow",
+              bg: theme.col,
+              color: `${theme.bg}`,
               textDecoration: "underline",
             }}
-            color={content ? "yellow" : "black"}
-            bg={content ? "black" : "inherit"}
+            color={content ? theme.bg : theme.col}
+            bg={content ? theme.col : "inherit"}
             textAlign="center"
             borderRadius="8px 0 0 8px"
             border="2px solid"
-            borderColor="borderColor"
+            borderColor={theme.line}
             cursor="pointer"
             size="H2"
             p="10px"
@@ -118,16 +122,16 @@ function View({ page, users }) {
 
           <Heading
             _hover={{
-              bg: "black",
-              color: "yellow",
+              bg: theme.col,
+              color: theme.bg,
               textDecoration: "underline",
             }}
-            color={content ? "black" : "yellow"}
-            bg={content ? "inherit" : "black"}
+            color={content ? theme.col : theme.bg }
+            bg={content ? "inherit" : theme.col}
             textAlign="center"
             borderRadius="0 8px 8px 0"
             border="2px solid"
-            borderColor="borderColor"
+            borderColor={theme.line}
             borderLeft="0px"
             cursor="pointer"
             size="H2"
