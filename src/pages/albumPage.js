@@ -14,7 +14,7 @@ function AlbumPage() {
 
   let { userId, albumId } = useParams(); // route-> siteName/user/:userId/album/:albumId
 
-  const {theme, themeDispatch} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     const getAllUserAlbums = () => {

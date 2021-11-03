@@ -8,7 +8,7 @@ import { useContext } from "react";
 function Create({ page, users, getUsers }) {
   const [changePage, setChangePage] = useState(true); 
 
-  const {theme, themeDispatch} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
 
   return (
     <Flex

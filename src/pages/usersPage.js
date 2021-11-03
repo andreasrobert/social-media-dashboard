@@ -14,7 +14,7 @@ function View({ page, users }) {
   const [mobile, setMobile] = useState(true);    // UX design change when width is small
   const [focus, setFocus] = useState("");       // which user to show their posts/albums
 
-  const {theme, themeDispatch} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
 
   const getPosts = (userId, userData) => {
     setLoading(true);

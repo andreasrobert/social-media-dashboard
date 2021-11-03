@@ -18,7 +18,7 @@ function Create({ page }) {
     loading,
   } = useHandleCreate("", "", page);
 
-  const {theme, themeDispatch} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
 
 
   return (
